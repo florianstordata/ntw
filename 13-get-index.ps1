@@ -1,8 +1,8 @@
 # on recupere le repertoire courant
 $rep = (Get-Location).path
-$server=$rep.split("\\""_")[6]
+$server=$rep.split("\\""_")[5]
 
-$destination="D:\_Stordata\NTW\tigf"
+$destination="D:\_Stordata\traitement-ntw"
 $sources="$destination\sources\$server"
 
 If (-not (Test-Path $sources)) { New-Item -ItemType Directory $sources }
@@ -14,7 +14,9 @@ if ((test-path $ntwreport) -eq "true") {
 
 $content=get-content $ntwreport | where {$_ -notlike "*actuellement*" -and $_ -notlike "*currently*" -and $_ -notlike $null}
 
-$content -replace "Program Files", "Program_Files" > $sources\nsrls.txt
+$content=$content -replace "Program Files", "Program_Files"
+$content=$content -replace "EMC NetWorker", "EMC_NetWorker" > $sources\nsrls.txt
+
 
 $file = Get-Content $sources\nsrls.txt
 $containsWord = $file | %{$_ -match "enregistrement"}

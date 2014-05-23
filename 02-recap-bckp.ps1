@@ -1,8 +1,8 @@
 ﻿# on recupere le repertoire courant
 $rep = (Get-Location).path
-$server=$rep.split("\\""_")[6]
+$server=$rep.split("\\""_")[5]
 
-$destination="D:\_Stordata\NTW\tigf"
+$destination="D:\_Stordata\traitement-ntw"
 $sources="$destination\sources\$server"
 $ntwreport=".\STD.su.servsum.output.csv"
 
